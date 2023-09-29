@@ -1,6 +1,6 @@
 {
 	"name": "@highlight-run/opentelemetry-sdk-workers",
-	"version": "0.6.2",
+	"version": "1.0.0",
 	"description": "Open Telemetry Cloudflare Workers Library. Provides a basic sdk for instrumenting workers.",
 	"type": "module",
 	"module": "dist/index.js",
@@ -43,7 +43,7 @@
 		"typegen": "yarn build && yarn proto:types",
 		"build": "yarn proto:build && tsup",
 		"dev": "yarn typegen && tsup --watch",
-		"proto:build": "pbjs --target static-module --wrap es6 --path opentelemetry-proto/opentelemetry/proto common/v1/common.proto resource/v1/resource.proto trace/v1/trace.proto logs/v1/logs.proto collector/logs/v1/logs_service.proto collector/trace/v1/trace_service.proto --out src/proto.js",
+		"proto:build": "pbjs --target static-module --wrap es6 --path proto/opentelemetry/proto common/v1/common.proto resource/v1/resource.proto trace/v1/trace.proto logs/v1/logs.proto collector/logs/v1/logs_service.proto collector/trace/v1/trace_service.proto --out src/proto.js",
 		"proto:types": "pbts --out src/proto.d.ts src/proto.js"
 	},
 	"installConfig": {
