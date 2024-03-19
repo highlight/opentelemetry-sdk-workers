@@ -37,6 +37,7 @@ export abstract class OTLPCloudflareExporterBase<
 	protected _sendingPromises: Promise<unknown>[] = [];
 	protected headers: Record<string, string>;
 	protected enableCompression: boolean;
+	protected attributes: Record<string, string>
 
 	public static parseEnv(env: Record<string, unknown>, exporterType: "LOGS" | "TRACES" | "METRICS") {
 		const headers = baggageUtils.parseKeyPairsIntoRecord(env[`OTEL_EXPORTER_OTLP_${exporterType}_HEADERS`] as string | undefined ?? env["OTEL_EXPORTER_OTLP_HEADERS"] as string | undefined ?? '');
@@ -75,7 +76,13 @@ export abstract class OTLPCloudflareExporterBase<
 		this.timeoutMillis = configureExporterTimeout(config.timeoutMillis);
 
 		this.enableCompression = config.compress ?? true;
+		this.attributes = {}
 	}
+
+	setAttributes(attributes: Record<string, string>) {
+		this.attributes = {...this.attributes, ...attributes};
+	}
+
 
 	/**
 	 * Export items.

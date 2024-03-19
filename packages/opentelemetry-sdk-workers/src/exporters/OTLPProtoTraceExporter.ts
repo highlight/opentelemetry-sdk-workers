@@ -9,6 +9,7 @@ import {
 	OTLPCloudflareExporterBase,
 	OTLPCloudflareExporterBaseConfig,
 } from './OTLPCloudflareExporterBase'
+import { Resource } from '@opentelemetry/resources'
 
 const {
 	proto: {
@@ -42,6 +43,13 @@ export class OTLPProtoTraceExporter extends OTLPCloudflareExporterBase<
 	contentType = 'application/x-protobuf'
 
 	convert(spans: ReadableSpan[]): Uint8Array {
+		spans.forEach(span => {
+			const resource = span.resource.merge(new Resource(this.attributes))
+
+			// @ts-ignore
+			span.resource = resource
+		})
+
 		const convertedSpans = createExportTraceServiceRequest(spans, {
 			useHex: false,
 		})
