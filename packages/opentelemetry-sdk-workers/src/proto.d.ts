@@ -1009,6 +1009,9 @@ export namespace opentelemetry {
                     /** Span parentSpanId */
                     parentSpanId?: (Uint8Array|null);
 
+                    /** Span flags */
+                    flags?: (number|null);
+
                     /** Span name */
                     name?: (string|null);
 
@@ -1063,6 +1066,9 @@ export namespace opentelemetry {
 
                     /** Span parentSpanId. */
                     public parentSpanId: Uint8Array;
+
+                    /** Span flags. */
+                    public flags: number;
 
                     /** Span name. */
                     public name: string;
@@ -1319,6 +1325,9 @@ export namespace opentelemetry {
 
                         /** Link droppedAttributesCount */
                         droppedAttributesCount?: (number|null);
+
+                        /** Link flags */
+                        flags?: (number|null);
                     }
 
                     /** Represents a Link. */
@@ -1344,6 +1353,9 @@ export namespace opentelemetry {
 
                         /** Link droppedAttributesCount. */
                         public droppedAttributesCount: number;
+
+                        /** Link flags. */
+                        public flags: number;
 
                         /**
                          * Creates a new Link instance using the specified properties.
@@ -1535,6 +1547,14 @@ export namespace opentelemetry {
                         STATUS_CODE_OK = 1,
                         STATUS_CODE_ERROR = 2
                     }
+                }
+
+                /** SpanFlags enum. */
+                enum SpanFlags {
+                    SPAN_FLAGS_DO_NOT_USE = 0,
+                    SPAN_FLAGS_TRACE_FLAGS_MASK = 255,
+                    SPAN_FLAGS_CONTEXT_HAS_IS_REMOTE_MASK = 256,
+                    SPAN_FLAGS_CONTEXT_IS_REMOTE_MASK = 512
                 }
             }
         }
@@ -1891,8 +1911,8 @@ export namespace opentelemetry {
 
                 /** LogRecordFlags enum. */
                 enum LogRecordFlags {
-                    LOG_RECORD_FLAG_UNSPECIFIED = 0,
-                    LOG_RECORD_FLAG_TRACE_FLAGS_MASK = 255
+                    LOG_RECORD_FLAGS_DO_NOT_USE = 0,
+                    LOG_RECORD_FLAGS_TRACE_FLAGS_MASK = 255
                 }
 
                 /** Properties of a LogRecord. */
@@ -2201,6 +2221,9 @@ export namespace opentelemetry {
 
                     /** Properties of an ExportLogsServiceResponse. */
                     interface IExportLogsServiceResponse {
+
+                        /** ExportLogsServiceResponse partialSuccess */
+                        partialSuccess?: (opentelemetry.proto.collector.logs.v1.IExportLogsPartialSuccess|null);
                     }
 
                     /** Represents an ExportLogsServiceResponse. */
@@ -2211,6 +2234,9 @@ export namespace opentelemetry {
                          * @param [properties] Properties to set
                          */
                         constructor(properties?: opentelemetry.proto.collector.logs.v1.IExportLogsServiceResponse);
+
+                        /** ExportLogsServiceResponse partialSuccess. */
+                        public partialSuccess?: (opentelemetry.proto.collector.logs.v1.IExportLogsPartialSuccess|null);
 
                         /**
                          * Creates a new ExportLogsServiceResponse instance using the specified properties.
@@ -2284,6 +2310,109 @@ export namespace opentelemetry {
 
                         /**
                          * Gets the default type url for ExportLogsServiceResponse
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    /** Properties of an ExportLogsPartialSuccess. */
+                    interface IExportLogsPartialSuccess {
+
+                        /** ExportLogsPartialSuccess rejectedLogRecords */
+                        rejectedLogRecords?: (number|Long|null);
+
+                        /** ExportLogsPartialSuccess errorMessage */
+                        errorMessage?: (string|null);
+                    }
+
+                    /** Represents an ExportLogsPartialSuccess. */
+                    class ExportLogsPartialSuccess implements IExportLogsPartialSuccess {
+
+                        /**
+                         * Constructs a new ExportLogsPartialSuccess.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: opentelemetry.proto.collector.logs.v1.IExportLogsPartialSuccess);
+
+                        /** ExportLogsPartialSuccess rejectedLogRecords. */
+                        public rejectedLogRecords: (number|Long);
+
+                        /** ExportLogsPartialSuccess errorMessage. */
+                        public errorMessage: string;
+
+                        /**
+                         * Creates a new ExportLogsPartialSuccess instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns ExportLogsPartialSuccess instance
+                         */
+                        public static create(properties?: opentelemetry.proto.collector.logs.v1.IExportLogsPartialSuccess): opentelemetry.proto.collector.logs.v1.ExportLogsPartialSuccess;
+
+                        /**
+                         * Encodes the specified ExportLogsPartialSuccess message. Does not implicitly {@link opentelemetry.proto.collector.logs.v1.ExportLogsPartialSuccess.verify|verify} messages.
+                         * @param message ExportLogsPartialSuccess message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: opentelemetry.proto.collector.logs.v1.IExportLogsPartialSuccess, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified ExportLogsPartialSuccess message, length delimited. Does not implicitly {@link opentelemetry.proto.collector.logs.v1.ExportLogsPartialSuccess.verify|verify} messages.
+                         * @param message ExportLogsPartialSuccess message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: opentelemetry.proto.collector.logs.v1.IExportLogsPartialSuccess, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an ExportLogsPartialSuccess message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns ExportLogsPartialSuccess
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): opentelemetry.proto.collector.logs.v1.ExportLogsPartialSuccess;
+
+                        /**
+                         * Decodes an ExportLogsPartialSuccess message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns ExportLogsPartialSuccess
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): opentelemetry.proto.collector.logs.v1.ExportLogsPartialSuccess;
+
+                        /**
+                         * Verifies an ExportLogsPartialSuccess message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an ExportLogsPartialSuccess message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns ExportLogsPartialSuccess
+                         */
+                        public static fromObject(object: { [k: string]: any }): opentelemetry.proto.collector.logs.v1.ExportLogsPartialSuccess;
+
+                        /**
+                         * Creates a plain object from an ExportLogsPartialSuccess message. Also converts values to other types if specified.
+                         * @param message ExportLogsPartialSuccess
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: opentelemetry.proto.collector.logs.v1.ExportLogsPartialSuccess, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this ExportLogsPartialSuccess to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for ExportLogsPartialSuccess
                          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                          * @returns The default type url
                          */
@@ -2442,6 +2571,9 @@ export namespace opentelemetry {
 
                     /** Properties of an ExportTraceServiceResponse. */
                     interface IExportTraceServiceResponse {
+
+                        /** ExportTraceServiceResponse partialSuccess */
+                        partialSuccess?: (opentelemetry.proto.collector.trace.v1.IExportTracePartialSuccess|null);
                     }
 
                     /** Represents an ExportTraceServiceResponse. */
@@ -2452,6 +2584,9 @@ export namespace opentelemetry {
                          * @param [properties] Properties to set
                          */
                         constructor(properties?: opentelemetry.proto.collector.trace.v1.IExportTraceServiceResponse);
+
+                        /** ExportTraceServiceResponse partialSuccess. */
+                        public partialSuccess?: (opentelemetry.proto.collector.trace.v1.IExportTracePartialSuccess|null);
 
                         /**
                          * Creates a new ExportTraceServiceResponse instance using the specified properties.
@@ -2525,6 +2660,109 @@ export namespace opentelemetry {
 
                         /**
                          * Gets the default type url for ExportTraceServiceResponse
+                         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns The default type url
+                         */
+                        public static getTypeUrl(typeUrlPrefix?: string): string;
+                    }
+
+                    /** Properties of an ExportTracePartialSuccess. */
+                    interface IExportTracePartialSuccess {
+
+                        /** ExportTracePartialSuccess rejectedSpans */
+                        rejectedSpans?: (number|Long|null);
+
+                        /** ExportTracePartialSuccess errorMessage */
+                        errorMessage?: (string|null);
+                    }
+
+                    /** Represents an ExportTracePartialSuccess. */
+                    class ExportTracePartialSuccess implements IExportTracePartialSuccess {
+
+                        /**
+                         * Constructs a new ExportTracePartialSuccess.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: opentelemetry.proto.collector.trace.v1.IExportTracePartialSuccess);
+
+                        /** ExportTracePartialSuccess rejectedSpans. */
+                        public rejectedSpans: (number|Long);
+
+                        /** ExportTracePartialSuccess errorMessage. */
+                        public errorMessage: string;
+
+                        /**
+                         * Creates a new ExportTracePartialSuccess instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns ExportTracePartialSuccess instance
+                         */
+                        public static create(properties?: opentelemetry.proto.collector.trace.v1.IExportTracePartialSuccess): opentelemetry.proto.collector.trace.v1.ExportTracePartialSuccess;
+
+                        /**
+                         * Encodes the specified ExportTracePartialSuccess message. Does not implicitly {@link opentelemetry.proto.collector.trace.v1.ExportTracePartialSuccess.verify|verify} messages.
+                         * @param message ExportTracePartialSuccess message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: opentelemetry.proto.collector.trace.v1.IExportTracePartialSuccess, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified ExportTracePartialSuccess message, length delimited. Does not implicitly {@link opentelemetry.proto.collector.trace.v1.ExportTracePartialSuccess.verify|verify} messages.
+                         * @param message ExportTracePartialSuccess message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: opentelemetry.proto.collector.trace.v1.IExportTracePartialSuccess, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an ExportTracePartialSuccess message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns ExportTracePartialSuccess
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): opentelemetry.proto.collector.trace.v1.ExportTracePartialSuccess;
+
+                        /**
+                         * Decodes an ExportTracePartialSuccess message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns ExportTracePartialSuccess
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): opentelemetry.proto.collector.trace.v1.ExportTracePartialSuccess;
+
+                        /**
+                         * Verifies an ExportTracePartialSuccess message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an ExportTracePartialSuccess message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns ExportTracePartialSuccess
+                         */
+                        public static fromObject(object: { [k: string]: any }): opentelemetry.proto.collector.trace.v1.ExportTracePartialSuccess;
+
+                        /**
+                         * Creates a plain object from an ExportTracePartialSuccess message. Also converts values to other types if specified.
+                         * @param message ExportTracePartialSuccess
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: opentelemetry.proto.collector.trace.v1.ExportTracePartialSuccess, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this ExportTracePartialSuccess to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+
+                        /**
+                         * Gets the default type url for ExportTracePartialSuccess
                          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                          * @returns The default type url
                          */
