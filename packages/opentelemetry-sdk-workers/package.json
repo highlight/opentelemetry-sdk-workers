@@ -83,7 +83,7 @@
 		"protobufjs": "^7.2.6"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20230115.0",
+		"@cloudflare/workers-types": "4.20230214.0",
 		"@types/lodash-es": "^4.17.6",
 		"diary": "^0.4.3",
 		"lodash-es": "^4.17.21",
