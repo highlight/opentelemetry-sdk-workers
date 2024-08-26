@@ -1,5 +1,11 @@
 # opentelemetry-sdk-workers
 
+## 1.0.7
+
+### Patch Changes
+
+-   2339697: update opentelemetry dependencies
+
 ## 1.0.5
 
 ### Patch Changes
