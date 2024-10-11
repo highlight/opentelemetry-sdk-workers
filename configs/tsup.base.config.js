@@ -4,7 +4,7 @@ export default defineConfig({
     entry: ['src/index.ts'],
     format: ["esm"],
     splitting: true,
-    clean: true,
+    clean: false,
     dts: true,
     esbuildOptions(options) {
         options.conditions ??= [];
