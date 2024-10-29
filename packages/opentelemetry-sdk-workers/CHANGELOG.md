@@ -1,5 +1,11 @@
 # opentelemetry-sdk-workers
 
+## 1.0.8
+
+### Patch Changes
+
+-   d3ba444: fix opentelemetry-sdk-workers breaking with otlp-exporter-base 0.54
+
 ## 1.0.7
 
 ### Patch Changes
